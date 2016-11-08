@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+  <ul class="pager">
+	<li>
+		{% if page_obj.has_previous %}
+       	 <a href="?page={{ page_obj.previous_page_number }}">Antes</a>
+		{% endif %}
+        </li>
+	<li>
+		{% if page_obj.has_next %}
+     	 <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    	{% endif %}
+    </li>
+    </ul>
+    {% if object_list %}
+    {% for plato in object_list %}
+    <div class="col-md-3 alert alert-dismissible alert-success" style="margin:20px; width:250px; height:360px;">
+        <p><a class="btn btn-primary" href="{% url 'plato:plato_editar' plato.id %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'plato:plato_editar' plato.id %}">Comprar</a></p>
+    <h4>{{plato.titulo}}</h4>
+    <img src='{% static "imagen/tipico.jpg" %}'  class="img-rounded"/>
+    <p>{{plato.descripcion}}</p>
+    <p>{{plato.sector_zona}}</p>
+    <p>{{plato.ingrediente}}</p>
+    <p>{{plato.cal_gras_trans}}</p>
+    <p>{{plato.costo}}</p>
+    <ul class="nav nav-pills">
+    <li class="glyphicon glyphicon-lock"> <span class="badge">42</span></li>
+    <li class="glyphicon glyphicon-heart"> <span class="badge">42</span></li>
+    <li class="glyphicon glyphicon-thumbs-up"> <span class="badge">42</span></li>
+    </ul>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>No hay registro de platos</h1>
+    {% endif %}
+
+{% endblock %}

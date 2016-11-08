@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% block extrahead %}
+    {% endblock %}
+
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>{% block title %} Document {% endblock %}</title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+<div class="col-md-4">
+
+
+    {% block navbar %}
+    <ul class="nav nav-pills nav-stacked btn-group-vertical">
+        <li><img src='{% static "imagen/yo.jpg" %}'   class="img-circle" ></li>
+        <li><a href="#" class="btn btn-primary">Menu</a></li>
+        <li><a href="{% url 'comprador:comprador_crear' %}" class="btn btn-success">Registrar comprador</a></li>
+        <li><a href="{% url 'plato:plato_listar' %}" class="btn btn-success">Listar Platos</a></li>
+        <li><a href="{% url 'plato:plato_crear' %}" class="btn btn-success">Registrar Platos</a></li>
+        <li><a href="#" class="btn btn-danger">Salir</a></li>
+
+    </ul>
+    {% endblock %}
+
+
+</div>
+      <div class="col-md-8">
+
+          {% block content %}
+          <h5>Este es el bloque del header base</h5>
+          {% endblock %}
+
+
+      </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src='{% static "js/bootstrap.min.js" %}'></script>
+
+        {% block extrajs %}
+        {% endblock %}
+
+
+</body>
+</html>
